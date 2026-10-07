@@ -1,0 +1,80 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Birthday {
+  id           String   @id @default(uuid())
+  sisterName   String   @default("Vaishnavi")
+  birthdayDate DateTime
+  heroTitle    String   @default("Happy Birthday, My Dear Sister")
+  heroSubtitle String   @default("Today isn’t just another day… it’s the day someone very special came into this world.")
+  mainMessage  String   @db.Text
+  finalMessage String   @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Memory {
+  id           String   @id @default(uuid())
+  title        String
+  caption      String
+  description  String?  @db.Text
+  imageUrl     String
+  memoryDate   String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model TimelineEvent {
+  id           String   @id @default(uuid())
+  title        String
+  description  String   @db.Text
+  eventDate    String
+  imageUrl     String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Reason {
+  id           String   @id @default(uuid())
+  title        String
+  description  String   @db.Text
+  icon         String   @default("heart")
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Wish {
+  id           String   @id @default(uuid())
+  name         String
+  relationship String
+  message      String   @db.Text
+  status       String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Music {
+  id        String   @id @default(uuid())
+  title     String   @default("A Gentle Melody For You")
+  url       String?
+  enabled   Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+}

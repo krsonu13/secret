@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Vaishnavi! 🎉 | Sibling Edition</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Caveat:wght@600;700&family=Fredoka:wght@400;600;700&family=Outfit:wght@300;400;600;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Floating Background Ambient Elements -->
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <div class="floating-emojis" id="floatingEmojis"></div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Sound / Music Floating Control Bar -->
+  <div class="audio-controls-pill">
+    <button id="toggleMusicBtn" class="pill-btn" title="Toggle Happy Birthday Music">
+      <span class="icon">🎵</span>
+      <span class="btn-text">Birthday Tune</span>
+      <span class="wave-bars" id="musicVisualizer">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+    <button id="confettiCannonBtn" class="pill-btn popper-btn" title="Shoot Confetti!">
+      <span class="icon">🎉</span>
+      <span class="btn-text">Pop Confetti!</span>
+    </button>
+  </div>
+
+  <!-- QUICK PHOTO UPLOAD BAR (PROMINENT AT TOP) -->
+  <div class="quick-upload-banner">
+    <div class="qu-content">
+      <span class="qu-icon">📸</span>
+      <div class="qu-text">
+        <strong>Make it 100x more hilarious:</strong>
+        <span>Upload Vaishnavi's photos to put her face on memes, 3D rotating gallery, and sticker booth!</span>
+      </div>
+      <label for="masterPhotoUpload" class="qu-btn">
+        <span>⚡ Upload Her Photos Now</span>
+        <input type="file" id="masterPhotoUpload" accept="image/*" multiple style="display:none;">
+      </label>
+    </div>
+  </div>
+
+  <!-- LAYER 0: The "Identity Verification" Security Gate (Entry Modal) -->
+  <div class="gate-overlay" id="gateOverlay">
+    <div class="gate-card">
+      <div class="gate-badge">🚨 TOP SECRET SIBLING CLEARANCE 🚨</div>
+      <div class="scanner-avatar" id="gateAvatarBox">
+        <div class="scan-line"></div>
+        <div class="avatar-emoji" id="gateAvatarEmoji">👸🎂</div>
+      </div>
+      <h2>Biometric Drama-Check</h2>
+      <p class="gate-sub">Accessing confidential birthday celebrations. Answer truthfully:</p>
+      
+      <div class="verification-box">
+        <label>Are you Vaishnavi, the official Drama Queen &amp; Snack Robber of the house?</label>
+        <div class="gate-buttons">
+          <button class="btn btn-primary" id="passYesBtn">
+            <span>Yes, that's 100% me! 💁‍♀️</span>
+          </button>
+          <button class="btn btn-secondary" id="passNoBtn">
+            <span>No, I'm an innocent angel 😇</span>
+          </button>
+        </div>
+      </div>
+      <p class="gate-footnote">Warning: 1000% chance of brotherly roasts, real memes &amp; love ahead.</p>
+    </div>
+  </div>
+
+  <!-- MAIN EXPERIENCE CONTAINER -->
+  <div class="main-wrapper" id="mainWrapper">
+
+    <!-- HERO SECTION: Dramatic Birthday Greeting -->
+    <header class="hero-section">
+      <div class="hero-tag">🎂 07 OCTOBER SPECIAL EDITION 🎂</div>
+
+      <!-- Hero Photo Avatar Frame -->
+      <div class="hero-avatar-wrapper">
+        <div class="hero-crown">👑</div>
+        <div class="hero-avatar-frame" id="heroAvatarFrame">
+          <img src="" alt="Birthday Girl Vaishnavi" id="heroAvatarImg" class="hero-img hidden">
+          <div class="hero-avatar-placeholder" id="heroAvatarPlaceholder">
+            <span>👸</span>
+            <small>Drop photo or click upload</small>
+          </div>
+        </div>
+        <label for="singleHeroUpload" class="avatar-edit-chip" title="Change Avatar Photo">
+          📷 Change Photo
+          <input type="file" id="singleHeroUpload" accept="image/*" style="display:none;">
+        </label>
+      </div>
+
+      <h1 class="hero-title">
+        Happy Birthday, <br>
+        <span class="gradient-text glow-text">Vaishnavi!</span> 🌸
+      </h1>
+      <p class="hero-tagline">
+        To the little sister who has 100 moods per hour, steals all my hoodies &amp; chocolates, yet remains our favorite human! Today is your day to rule! ✨
+      </p>
+
+      <div class="hero-quick-stats">
+        <div class="stat-bubble">
+          <span class="num">365+</span>
+          <span class="lbl">Days of Drama</span>
+        </div>
+        <div class="stat-bubble">
+          <span class="num">999+</span>
+          <span class="lbl">Stolen Snacks</span>
+        </div>
+        <div class="stat-bubble">
+          <span class="num">#1</span>
+          <span class="lbl">Forever Little Sister</span>
+        </div>
+      </div>
+
+      <div class="hero-cta-scroll">
+        <a href="#memeStudioSection" class="scroll-down-btn jump-meme-btn">
+          <span>😂 View Vaishnavi's Meme Studio 👇</span>
+        </a>
+        <a href="#cakeSection" class="scroll-down-btn">
+          <span>🎂 Blow Birthday Candles</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- NEW SPECIAL LAYER: SIBLING MEME STUDIO (PUT HER FACE ON MEMES!) -->
+    <section class="section-card meme-studio-section" id="memeStudioSection">
+      <div class="section-header">
+        <span class="sec-badge fire-badge">🔥 CREATIVE LAYER: MEME GENERATOR</span>
+        <h2>The Vaishnavi Meme Studio 🤣</h2>
+        <p>Her real photos slotted into legendary viral meme templates! Upload her funniest photos to customize:</p>
+
+        <div class="studio-controls">
+          <label for="memePhotoUpload" class="btn btn-action upload-meme-photo-btn">
+            <span>🎭 Upload Her Funny Face For Memes</span>
+            <input type="file" id="memePhotoUpload" accept="image/*" style="display:none;">
+          </label>
+        </div>
+      </div>
+
+      <div class="meme-studio-grid">
+        <!-- TEMPLATE 1: DISASTER SISTER (Disaster Girl) -->
+        <div class="viral-meme-card template-disaster">
+          <div class="meme-header-bar">VIRAL TEMPLATE #01: "DISASTER GIRL"</div>
+          <div class="meme-stage disaster-stage">
+            <div class="fire-backdrop">
+              <div class="fire-flames"></div>
+              <div class="burning-house">
+                <span class="house-label">🏠 Sonu's Peaceful Room &amp; Snacks</span>
+              </div>
+            </div>
+            <div class="face-cutout-wrapper">
+              <img src="" class="meme-custom-face hidden" alt="Vaishnavi Smirk">
+              <div class="placeholder-face">
+                <span>😏</span>
+                <small>Vaishnavi's face</small>
+              </div>
+            </div>
+            <div class="classic-meme-caption top">WHEN BHAIYA ASKS WHERE HIS MAGGI WENT:</div>
+            <div class="classic-meme-caption bottom">"WHAT MAGGI? I SAW NOTHING."</div>
+          </div>
+          <div class="meme-card-footer">
+            <span class="meme-tagline">100% Guaranteed Innocence Act</span>
+          </div>
+        </div>
+
+        <!-- TEMPLATE 2: DRAKE HOTLINE BLING (Sibling Edition) -->
+        <div class="viral-meme-card template-drake">
+          <div class="meme-header-bar">VIRAL TEMPLATE #02: "HOTLINE BLING"</div>
+          <div class="drake-grid">
+            <!-- Row 1: Nah -->
+            <div class="drake-row">
+              <div class="drake-side reject-side">
+                <div class="face-bubble">
+                  <img src="" class="meme-custom-face hidden" alt="Disgusted">
+                  <div class="placeholder-face"><span>🙅‍♀️</span></div>
+                </div>
+                <div class="drake-symbol">❌</div>
+              </div>
+              <div class="drake-text-box">
+                "Returning the clothes, chargers &amp; hoodies you borrowed from Bhaiya on time."
+              </div>
+            </div>
+            <!-- Row 2: Yeah -->
+            <div class="drake-row">
+              <div class="drake-side approve-side">
+                <div class="face-bubble">
+                  <img src="" class="meme-custom-face hidden" alt="Approving">
+                  <div class="placeholder-face"><span>👉😎</span></div>
+                </div>
+                <div class="drake-symbol">✔️</div>
+              </div>
+              <div class="drake-text-box">
+                "Saying 'It looks 10x better on me anyway' and locking it in your closet forever."
+              </div>
+            </div>
+          </div>
+          <div class="meme-card-footer">
+            <span class="meme-tagline">Classic Sister Logic</span>
+          </div>
+        </div>
+
+        <!-- TEMPLATE 3: EXPECTATION VS REALITY -->
+        <div class="viral-meme-card template-evsr">
+          <div class="meme-header-bar">VIRAL TEMPLATE #03: "EXPECTATION VS REALITY"</div>
+          <div class="evsr-grid">
+            <div class="evsr-col">
+              <div class="evsr-badge">EXPECTATION:</div>
+              <div class="evsr-visual angel-side">
+                <div class="angel-halo">😇✨</div>
+                <div class="evsr-photo-slot">
+                  <img src="" class="meme-custom-face hidden" alt="Angel">
+                  <div class="placeholder-face"><span>👼</span></div>
+                </div>
+                <p>"Quiet, aesthetic sister who listens to advice and eats healthy."</p>
+              </div>
+            </div>
+            <div class="evsr-col">
+              <div class="evsr-badge reality-badge">REALITY:</div>
+              <div class="evsr-visual gremlin-side">
+                <div class="horns">😈💥</div>
+                <div class="evsr-photo-slot">
+                  <img src="" class="meme-custom-face hidden" alt="Gremlin">
+                  <div class="placeholder-face"><span>👹</span></div>
+                </div>
+                <p>"Midnight goblin yelling for Maggi and stealing all chocolates at 2:00 AM."</p>
+              </div>
+            </div>
+          </div>
+          <div class="meme-card-footer">
+            <span class="meme-tagline">And we wouldn't trade her for the world!</span>
+          </div>
+        </div>
+
+        <!-- TEMPLATE 4: TWO BUTTONS DILEMMA -->
+        <div class="viral-meme-card template-buttons">
+          <div class="meme-header-bar">VIRAL TEMPLATE #04: "THE PANIC BUTTON"</div>
+          <div class="buttons-stage">
+            <div class="buttons-dilemma-header">VAISHNAVI WHEN SHE ACCIDENTALLY BREAKS SOMETHING:</div>
+            <div class="buttons-console">
+              <div class="big-red-btn btn-left">
+                <span>🔴</span>
+                <small>Admit it was an accident</small>
+              </div>
+              <div class="big-red-btn btn-right active-pressed">
+                <span>🔴</span>
+                <small>"MUMMY! BHAIYA NE KIYA!"</small>
+              </div>
+            </div>
+            <div class="buttons-sweat-guy">
+              <div class="face-bubble">
+                <img src="" class="meme-custom-face hidden" alt="Sweating Face">
+                <div class="placeholder-face"><span>😰💦</span></div>
+              </div>
+              <div class="sweat-caption">Choice was never in question.</div>
+            </div>
+          </div>
+          <div class="meme-card-footer">
+            <span class="meme-tagline">Bhaiya always takes the blame</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW CREATIVE LAYER: 3D ROTATING PHOTO CYLINDER / CAROUSEL -->
+    <section class="section-card carousel-section" id="carouselSection">
+      <div class="section-header">
+        <span class="sec-badge">✨ 3D VISUAL SHOWCASE</span>
+        <h2>3D Interactive Birthday Gallery 🎠</h2>
+        <p>A 3D rotating stage of Vaishnavi's best photos! Drag left/right to spin:</p>
+      </div>
+
+      <div class="carousel-3d-wrapper">
+        <div class="carousel-3d-stage" id="carousel3dStage">
+          <!-- 6 Rotating 3D Panels -->
+          <div class="panel-3d" style="--i: 0;">
+            <div class="panel-card">
+              <img src="" class="gallery-slot slot-0 hidden" alt="Memory 1">
+              <div class="panel-placeholder"><span>🌸</span><p>Little Princess</p></div>
+            </div>
+          </div>
+          <div class="panel-3d" style="--i: 1;">
+            <div class="panel-card">
+              <img src="" class="gallery-slot slot-1 hidden" alt="Memory 2">
+              <div class="panel-placeholder"><span>👑</span><p>Drama Queen</p></div>
+            </div>
+          </div>
+          <div class="panel-3d" style="--i: 2;">
+            <div class="panel-card">
+              <img src="" class="gallery-slot slot-2 hidden" alt="Memory 3">
+              <div class="panel-placeholder"><span>🍕</span><p>Snack Partner</p></div>
+            </div>
+          </div>
+          <div class="panel-3d" style="--i: 3;">
+            <div class="panel-card">
+              <img src="" class="gallery-slot slot-3 hidden" alt="Memory 4">
+              <div class="panel-placeholder"><span>🎉</span><p>Birthday Magic</p></div>
+            </div>
+          </div>
+          <div class="panel-3d" style="--i: 4;">
+            <div class="panel-card">
+              <img src="" class="gallery-slot slot-4 hidden" alt="Memory 5">
+              <div class="panel-placeholder"><span>🥰</span><p>Pure Smile</p></div>
+            </div>
+          </div>
+          <div class="panel-3d" style="--i: 5;">
+            <div class="panel-card">
+              <img src="" class="gallery-slot slot-5 hidden" alt="Memory 6">
+              <div class="panel-placeholder"><span>💖</span><p>Best Sister</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-nav-controls">
+        <button class="c-nav-btn" id="cNavPrev">◀ Spin Left</button>
+        <button class="c-nav-btn auto-spin-btn" id="cNavAuto">⏸️ Pause Spin</button>
+        <button class="c-nav-btn" id="cNavNext">Spin Right ▶</button>
+      </div>
+    </section>
+
+    <!-- NEW CREATIVE LAYER: "DECORATE VAISHNAVI" STICKER PHOTO BOOTH -->
+    <section class="section-card sticker-booth-section" id="boothSection">
+      <div class="section-header">
+        <span class="sec-badge">🎨 CREATIVE FUN: STICKER BOOTH</span>
+        <h2>Decorate Vaishnavi Photo Booth 🎭</h2>
+        <p>Drop a photo of Vaishnavi into the canvas, then drag &amp; drop hilarious stickers on her face!</p>
+      </div>
+
+      <div class="booth-container">
+        <!-- Sticker Tray -->
+        <div class="sticker-tray">
+          <span class="tray-label">Drag or Tap to Add Stickers:</span>
+          <div class="stickers-list">
+            <button class="sticker-tool" data-sticker="👑">👑 Queen Crown</button>
+            <button class="sticker-tool" data-sticker="🕶️">🕶️ Thug Glasses</button>
+            <button class="sticker-tool" data-sticker="🎂">🎂 Birthday Cake</button>
+            <button class="sticker-tool" data-sticker="😈">😈 Devil Horns</button>
+            <button class="sticker-tool" data-sticker="😇">😇 Angel Halo</button>
+            <button class="sticker-tool" data-sticker="🍕">🍕 Pizza Slice</button>
+            <button class="sticker-tool" data-sticker="🎀">🎀 Cute Bow</button>
+            <button class="sticker-tool" data-sticker="✨">✨ Sparkles</button>
+          </div>
+          <div class="booth-action-row">
+            <label for="boothPhotoInput" class="btn btn-secondary">
+              <span>📷 Load New Photo</span>
+              <input type="file" id="boothPhotoInput" accept="image/*" style="display:none;">
+            </label>
+            <button class="btn btn-secondary" id="clearStickersBtn">🧹 Clear Stickers</button>
+          </div>
+        </div>
+
+        <!-- Interactive Canvas Stage -->
+        <div class="booth-stage-wrapper">
+          <div class="booth-canvas-stage" id="boothStage">
+            <img src="" id="boothBgImg" class="booth-user-img hidden" alt="Decorated Vaishnavi">
+            <div class="booth-placeholder" id="boothPlaceholder">
+              <span class="bp-icon">📸</span>
+              <p>Upload a photo of Vaishnavi to start decorating!</p>
+            </div>
+            <!-- Stickers get appended here dynamically -->
+          </div>
+          <p class="booth-hint">💡 Tip: You can drag added stickers around the photo!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIBLING DRAMA SOUNDBOARD -->
+    <section class="section-card soundboard-section">
+      <div class="section-header">
+        <span class="sec-badge">🔊 SIBLING SOUNDBOARD</span>
+        <h2>The Sibling Drama Soundboard 📢</h2>
+        <p>Press these buttons to trigger iconic reaction sounds:</p>
+      </div>
+
+      <div class="soundboard-grid">
+        <button class="sb-button" id="sbDhoom">
+          <span class="sb-icon">⚡</span>
+          <span class="sb-title">Dramatic Zoom</span>
+          <span class="sb-desc">Dhoom-tana serial suspense!</span>
+        </button>
+        <button class="sb-button" id="sbAirhorn">
+          <span class="sb-icon">📯</span>
+          <span class="sb-title">MLG Airhorn</span>
+          <span class="sb-desc">Maximum celebration noise!</span>
+        </button>
+        <button class="sb-button" id="sbBoing">
+          <span class="sb-icon">🤪</span>
+          <span class="sb-title">Cartoon Boing</span>
+          <span class="sb-desc">When she trips on air</span>
+        </button>
+        <button class="sb-button" id="sbDamage">
+          <span class="sb-icon">💀</span>
+          <span class="sb-title">Emotional Damage</span>
+          <span class="sb-desc">Critical hit roast!</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- LAYER 1: Interactive Birthday Cake -->
+    <section class="section-card cake-section" id="cakeSection">
+      <div class="section-header">
+        <span class="sec-badge">🎂 MAKE A WISH</span>
+        <h2>Blow Out the Candles! 🎂</h2>
+        <p>Make your secret wish and tap the cake candles to blow them out!</p>
+      </div>
+
+      <div class="cake-stage">
+        <!-- 3D Layered CSS Cake -->
+        <div class="cake-container" id="birthdayCake" title="Click anywhere on the cake to blow the candles!">
+          <!-- Candles -->
+          <div class="candles-rack">
+            <div class="candle" data-candle="1">
+              <div class="flame" id="flame1"></div>
+              <div class="smoke" id="smoke1"></div>
+              <div class="wick"></div>
+              <div class="candle-body stripe-pink"></div>
+            </div>
+            <div class="candle center-candle" data-candle="2">
+              <div class="flame" id="flame2"></div>
+              <div class="smoke" id="smoke2"></div>
+              <div class="wick"></div>
+              <div class="candle-body stripe-gold"></div>
+            </div>
+            <div class="candle" data-candle="3">
+              <div class="flame" id="flame3"></div>
+              <div class="smoke" id="smoke3"></div>
+              <div class="wick"></div>
+              <div class="candle-body stripe-violet"></div>
+            </div>
+          </div>
+
+          <!-- Cake Tiers -->
+          <div class="cake-tier tier-top">
+            <div class="frosting-drips">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="tier-surface">
+              <span class="cake-name">Vaishnavi ✨</span>
+            </div>
+          </div>
+
+          <div class="cake-tier tier-bottom">
+            <div class="frosting-pearls"></div>
+            <div class="tier-surface">
+              <span class="cake-flavor">Extra Sweet &amp; Extra Sassy</span>
+            </div>
+          </div>
+
+          <div class="cake-plate"></div>
+        </div>
+
+        <div class="cake-action-area">
+          <button class="btn btn-action" id="blowCandlesBtn">
+            <span class="action-icon">💨</span>
+            <span id="blowBtnText">Tap to Blow Candles!</span>
+          </button>
+          <div class="wish-message-reveal hidden" id="wishMessageReveal">
+            <div class="reveal-inner">
+              <h3>🎉 YAY! YOUR WISH HAS BEEN SENT TO THE UNIVERSE! 🌟</h3>
+              <p>May this year bring you endless happiness, top scores, unlimited shopping, and zero scoldings from Mom &amp; Dad! 💕</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYER 2: The Sibling Roast & Meme Hall of Fame Cards -->
+    <section class="section-card memes-section" id="memesSection">
+      <div class="section-header">
+        <span class="sec-badge">SIBLING REALITY CHECK</span>
+        <h2>The Relatable Sibling Stories 🖼️</h2>
+        <p>A 100% scientifically accurate representation of our daily life.</p>
+        
+        <div class="filter-toggle">
+          <button class="filter-btn active" data-filter="all">All Stories 😂</button>
+          <button class="filter-btn" data-filter="roast">The Roasts 🌶️</button>
+          <button class="filter-btn" data-filter="toast">The Sweet Toasts 🍯</button>
+        </div>
+      </div>
+
+      <div class="memes-grid" id="memesGrid">
+        <!-- Meme Card 1 -->
+        <div class="meme-card" data-category="roast">
+          <div class="meme-visual meme-bg-1">
+            <div class="meme-sticker">👗🛒</div>
+            <div class="meme-speech">"Bhai, this looks so nice on me, can I have it?"</div>
+          </div>
+          <div class="meme-content">
+            <div class="meme-title">The Wardrobe Pirate</div>
+            <div class="meme-desc">
+              Whatever enters my room is technically common property, but whatever enters her room is locked in Fort Knox.
+            </div>
+            <div class="meme-reactions">
+              <button class="reaction-chip" data-count="99">😂 <span>99</span></button>
+              <button class="reaction-chip" data-count="100">💯 Relatable <span>100</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meme Card 2 -->
+        <div class="meme-card" data-category="roast">
+          <div class="meme-visual meme-bg-2">
+            <div class="meme-sticker">🍕🕵️‍♀️</div>
+            <div class="meme-speech">"I didn't eat your chocolates! (Chocolate all over face)"</div>
+          </div>
+          <div class="meme-content">
+            <div class="meme-title">The Snack Detective Mystery</div>
+            <div class="meme-desc">
+              I can hide my treats at the top shelf behind 5 boxes of oats, and she will still sniff them out within 3 minutes.
+            </div>
+            <div class="meme-reactions">
+              <button class="reaction-chip" data-count="142">🍫 <span>142</span></button>
+              <button class="reaction-chip" data-count="87">Guilty <span>87</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meme Card 3 -->
+        <div class="meme-card" data-category="roast">
+          <div class="meme-visual meme-bg-3">
+            <div class="meme-sticker">🎭😭</div>
+            <div class="meme-speech">"MUMMY DEKHO BHAIYA NE KYA KIYA!"</div>
+          </div>
+          <div class="meme-content">
+            <div class="meme-title">Academy Award For Best Drama</div>
+            <div class="meme-desc">
+              I gently tap her shoulder in an argument, and she drops to the floor like she took a critical hit in a Bollywood climax.
+            </div>
+            <div class="meme-reactions">
+              <button class="reaction-chip" data-count="220">🏆 <span>220</span></button>
+              <button class="reaction-chip" data-count="180">Oscar Worthy <span>180</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meme Card 4 -->
+        <div class="meme-card" data-category="toast">
+          <div class="meme-visual meme-bg-4">
+            <div class="meme-sticker">🛡️✨</div>
+            <div class="meme-speech">"Nobody can trouble my little sister except ME."</div>
+          </div>
+          <div class="meme-content">
+            <div class="meme-title">The Unbreakable Sibling Rule</div>
+            <div class="meme-desc">
+              We may fight 24/7 over the remote and silly things, but if anyone else bothers you, your Bhaiya has your back forever.
+            </div>
+            <div class="meme-reactions">
+              <button class="reaction-chip" data-count="350">❤️ <span>350</span></button>
+              <button class="reaction-chip" data-count="290">Brother Love <span>290</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meme Card 5 -->
+        <div class="meme-card" data-category="roast">
+          <div class="meme-visual meme-bg-5">
+            <div class="meme-sticker">📱💅</div>
+            <div class="meme-speech">"I'll be ready in 5 minutes!" (45 minutes ago)</div>
+          </div>
+          <div class="meme-content">
+            <div class="meme-title">Vaishnavi Timezone (VTZ)</div>
+            <div class="meme-desc">
+              Scientists are still studying how 5 minutes in Vaishnavi's clock equals half an entire Netflix movie.
+            </div>
+            <div class="meme-reactions">
+              <button class="reaction-chip" data-count="175">⏰ <span>175</span></button>
+              <button class="reaction-chip" data-count="119">True <span>119</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meme Card 6 -->
+        <div class="meme-card" data-category="toast">
+          <div class="meme-visual meme-bg-6">
+            <div class="meme-sticker">🥰🌟</div>
+            <div class="meme-speech">"Having you as a sister is the greatest gift."</div>
+          </div>
+          <div class="meme-content">
+            <div class="meme-title">The Heart of Our Home</div>
+            <div class="meme-desc">
+              The house is boring without your non-stop chatter, your silly dances, and your genuine laughs. Never grow up too fast!
+            </div>
+            <div class="meme-reactions">
+              <button class="reaction-chip" data-count="500">🥺 <span>500</span></button>
+              <button class="reaction-chip" data-count="450">Family Forever <span>450</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYER 3: The Sister Trophy & Award Ceremony -->
+    <section class="section-card awards-section" id="awardsSection">
+      <div class="section-header">
+        <span class="sec-badge">OFFICIAL HONORS</span>
+        <h2>The Vaishnavi Annual Awards 2026 🏆</h2>
+        <p>Tap each trophy to claim your official lifetime achievements!</p>
+      </div>
+
+      <div class="trophy-grid">
+        <div class="trophy-item" data-trophy="1">
+          <div class="trophy-icon">👑</div>
+          <div class="trophy-rank">GOLD TROPHY</div>
+          <div class="trophy-title">Supreme Drama Queen</div>
+          <div class="trophy-reason">Awarded for turning a broken nail or Wi-Fi lag into an international crisis.</div>
+          <button class="claim-badge-btn">Claim Trophy 🌟</button>
+        </div>
+
+        <div class="trophy-item" data-trophy="2">
+          <div class="trophy-icon">🍕</div>
+          <div class="trophy-rank">CHAMPION BADGE</div>
+          <div class="trophy-title">Midnight Snack Raiding</div>
+          <div class="trophy-reason">Awarded for stealth navigation to the fridge at 2:00 AM without making a sound.</div>
+          <button class="claim-badge-btn">Claim Trophy 🌟</button>
+        </div>
+
+        <div class="trophy-item" data-trophy="3">
+          <div class="trophy-icon">🛍️</div>
+          <div class="trophy-rank">GRAND SLAM</div>
+          <div class="trophy-title">Professional Borrower</div>
+          <div class="trophy-reason">For items borrowed with the promise: "Bhaiya I will return it in 2 minutes" (Never seen again).</div>
+          <button class="claim-badge-btn">Claim Trophy 🌟</button>
+        </div>
+
+        <div class="trophy-item special-trophy" data-trophy="4">
+          <div class="trophy-icon">💖</div>
+          <div class="trophy-rank">LIFETIME ACHIEVEMENT</div>
+          <div class="trophy-title">World's #1 Sister</div>
+          <div class="trophy-reason">For bringing the biggest smiles, the funniest jokes, and unconditional warmth to our lives.</div>
+          <button class="claim-badge-btn">Claim Forever ❤️</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYER 4: Polaroid Memory Wall with Custom Photo Upload -->
+    <section class="section-card memories-section" id="memoriesSection">
+      <div class="section-header">
+        <span class="sec-badge">MEMORY LANE</span>
+        <h2>The Vaishnavi Scrapbook 📸</h2>
+        <p>Cherished snapshots and sister memories! Uploaded photos appear as cute polaroids:</p>
+        
+        <div class="photo-upload-container">
+          <label for="photoUploadInput" class="upload-custom-btn">
+            <span>📷 Add Photos to Scrapbook</span>
+            <input type="file" id="photoUploadInput" accept="image/*" multiple style="display:none;">
+          </label>
+        </div>
+      </div>
+
+      <div class="polaroid-board" id="polaroidBoard">
+        <!-- Default Aesthetic Polaroid 1 -->
+        <div class="polaroid-pin tilt-left">
+          <div class="tape-strip"></div>
+          <div class="polaroid-frame">
+            <div class="polaroid-photo polaroid-art-1">
+              <div class="art-overlay">
+                <span class="art-emoji">👧🎒</span>
+                <span class="art-text">School Days &amp; Infinite Tantrums</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">"Growing up together since day 1!"</div>
+          </div>
+        </div>
+
+        <!-- Default Aesthetic Polaroid 2 -->
+        <div class="polaroid-pin tilt-right">
+          <div class="tape-strip"></div>
+          <div class="polaroid-frame">
+            <div class="polaroid-photo polaroid-art-2">
+              <div class="art-overlay">
+                <span class="art-emoji">🍕🎉</span>
+                <span class="art-text">Foodie Partner In Crime</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">"Treats are 100x better when shared with you"</div>
+          </div>
+        </div>
+
+        <!-- Default Aesthetic Polaroid 3 -->
+        <div class="polaroid-pin tilt-straight">
+          <div class="tape-strip"></div>
+          <div class="polaroid-frame">
+            <div class="polaroid-photo polaroid-art-3">
+              <div class="art-overlay">
+                <span class="art-emoji">👑🎂</span>
+                <span class="art-text">Birthday Girl Magic</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">"Always the princess of the family ✨"</div>
+          </div>
+        </div>
+
+        <!-- Default Aesthetic Polaroid 4 -->
+        <div class="polaroid-pin tilt-left-subtle">
+          <div class="tape-strip"></div>
+          <div class="polaroid-frame">
+            <div class="polaroid-photo polaroid-art-4">
+              <div class="art-overlay">
+                <span class="art-emoji">✈️🌸</span>
+                <span class="art-text">Big Dreams &amp; Bright Future</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">"Go conquer the world, little one!"</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYER 5: Sibling Quiz Mini-Game -->
+    <section class="section-card quiz-section" id="quizSection">
+      <div class="section-header">
+        <span class="sec-badge">SIBLING SHOWDOWN</span>
+        <h2>The Vaishnavi &amp; Bhaiya Quiz 🧠</h2>
+        <p>Answer these 3 questions to prove your sister credentials!</p>
+      </div>
+
+      <div class="quiz-box" id="quizBox">
+        <div class="quiz-question-card" id="questionCard">
+          <div class="q-progress">
+            <span id="qCountText">Question 1 of 3</span>
+            <div class="q-bar"><div class="q-bar-fill" id="qBarFill"></div></div>
+          </div>
+          <h3 class="q-title" id="qTitle">What is Vaishnavi's official superpower?</h3>
+          <div class="q-options" id="qOptions">
+            <!-- Injected via JavaScript -->
+          </div>
+          <div class="q-feedback hidden" id="qFeedback">
+            <div class="feedback-meme" id="feedbackMeme"></div>
+            <p id="feedbackText"></p>
+            <button class="btn btn-primary" id="nextQuestionBtn">Next Question ➡️</button>
+          </div>
+        </div>
+
+        <div class="quiz-result-card hidden" id="quizResultCard">
+          <div class="result-trophy">🎖️</div>
+          <h3>Quiz Completed!</h3>
+          <p id="quizScoreText">Score: 3/3 Sibling Genius!</p>
+          <p class="score-sub">Conclusion: Certified best sister in the entire galaxy!</p>
+          <button class="btn btn-secondary" id="restartQuizBtn">Play Again 🔁</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYER 6: Virtual Gift Box & Sister Vouchers -->
+    <section class="section-card gift-section" id="giftSection">
+      <div class="section-header">
+        <span class="sec-badge">SURPRISE PERKS</span>
+        <h2>Open Your Birthday Gift Box! 🎁</h2>
+        <p>Tap the gift box below to unwrap your official sister birthday vouchers!</p>
+      </div>
+
+      <div class="gift-box-area">
+        <div class="gift-box-wrapper" id="giftBoxWrapper" title="Click to open the gift!">
+          <div class="gift-ribbon-bow">🎀</div>
+          <div class="gift-box-lid" id="giftLid"></div>
+          <div class="gift-box-body">
+            <span class="sparkle s1">✨</span>
+            <span class="sparkle s2">⭐</span>
+            <span class="sparkle s3">✨</span>
+          </div>
+        </div>
+        <p class="gift-instruction" id="giftInstruction">Tap the gift to unwrap! 👆</p>
+      </div>
+
+      <!-- Vouchers Container (Revealed upon gift open) -->
+      <div class="vouchers-container hidden" id="vouchersContainer">
+        <h3 class="voucher-title">🎟️ Official Brother Vouchers (Non-Refundable &amp; 100% Redeemable):</h3>
+        <div class="voucher-grid">
+          <div class="voucher-card">
+            <div class="v-tag">VOUCHER #01</div>
+            <h4>🍕 1 Unlimited Favorite Treat</h4>
+            <p>Redeemable anytime for your choice of pizza, burger, ice-cream, or cafe visit fully funded by Bhaiya.</p>
+            <div class="v-valid">Valid: Lifetime</div>
+          </div>
+          <div class="voucher-card">
+            <div class="v-tag">VOUCHER #02</div>
+            <h4>🛡️ 24-Hour Argument Immunity Pass</h4>
+            <p>Present this pass to win any sibling argument automatically with zero counter-arguments allowed.</p>
+            <div class="v-valid">Valid: 365 Days</div>
+          </div>
+          <div class="voucher-card">
+            <div class="v-tag">VOUCHER #03</div>
+            <h4>🛍️ Shopping Emergency Lifeline</h4>
+            <p>One free pass to ask Bhaiya to buy that one outfit or book you really want without questions.</p>
+            <div class="v-valid">Valid: Whenever Needed</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYER 7: The Wax-Sealed Heartfelt Letter -->
+    <section class="section-card letter-section" id="letterSection">
+      <div class="section-header">
+        <span class="sec-badge">FROM THE HEART</span>
+        <h2>A Secret Message For You 💌</h2>
+        <p>Break the seal to open your brother's heartfelt birthday letter.</p>
+      </div>
+
+      <div class="envelope-container" id="envelopeContainer">
+        <div class="envelope-outer" id="envelopeOuter">
+          <div class="envelope-flap" id="envelopeFlap"></div>
+          <div class="envelope-wax-seal" id="waxSeal" title="Click to break the wax seal and open!">
+            <span>V</span>
+          </div>
+          <div class="envelope-pocket"></div>
+        </div>
+
+        <!-- The Letter Card -->
+        <div class="letter-paper hidden" id="letterPaper">
+          <div class="letter-header">
+            <span class="letter-date">Special Birthday Edition</span>
+            <span class="letter-badge">Dear Vaishnavi, ❤️</span>
+          </div>
+          <div class="letter-body">
+            <p>
+              Happy Birthday, my dear little sister! 🎂✨
+            </p>
+            <p>
+              No matter how much we argue over trivial things, who gets the remote, or who stole the last bite of food, I want you to know how deeply proud I am to be your brother.
+            </p>
+            <p>
+              Watching you grow into such a strong, smart, funny, and wonderful person is one of the greatest joys. You bring so much energy, laughter, and light into our home, and honestly, life would be unimaginably quiet and boring without your crazy stories and dramatic moments.
+            </p>
+            <p>
+              Always remember that wherever life takes you, through every goal, dream, or challenge, your Bhaiya will always be standing in your corner cheering the loudest for you and protecting you.
+            </p>
+            <p>
+              May this upcoming year be packed with massive accomplishments, endless smiles, genuine happiness, and lots of cake! Eat lots, laugh louder, and keep shining like the rockstar you are.
+            </p>
+            <div class="letter-sign">
+              <span>With lots of love, blessings, and affection,</span>
+              <strong>Your Bhaiya (Sonu) ❤️</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER: Final Cheers -->
+    <footer class="birthday-footer">
+      <div class="footer-cake">🎂 🎉 🌸 💖 👑</div>
+      <p class="footer-msg">Crafted with endless love &amp; brotherly jokes for Vaishnavi's Birthday</p>
+      <button class="btn btn-primary re-blast-btn" id="finalBlastBtn">
+        Blast Birthday Fireworks Again! 🎆
+      </button>
+      <div class="copyright">Happy Birthday Vaishnavi • Celebrate Big!</div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
