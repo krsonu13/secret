@@ -1,12 +1,4 @@
-databases:
-  - name: birthday-postgres-db
-    databaseName: birthday_db
-    user: birthday_user
-    plan: free
-    region: oregon
-
 services:
-  # Option 1: Unified Full-Stack Web Service (Serves API + React Frontend together)
   - type: web
     name: birthday-sister-app
     env: node
@@ -19,9 +11,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        fromDatabase:
-          name: birthday-postgres-db
-          property: connectionString
+        sync: false # Paste your existing Render PostgreSQL URL or free Neon/Supabase DB URL
       - key: JWT_SECRET
         generateValue: true
       - key: UPLOAD_DIR
