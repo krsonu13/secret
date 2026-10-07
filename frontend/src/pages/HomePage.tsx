@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { BirthdayInfo, Memory, TimelineEvent, Reason, Wish, MusicConfig } from '../types';
+import {
+  defaultBirthday, defaultMemories, defaultTimeline,
+  defaultReasons, defaultWishes, defaultMusic
+} from '../data/defaultData';
 import { FloatingParticles } from '../components/FloatingParticles';
 import { HeartCursorTrail } from '../components/HeartCursorTrail';
 import { ScrollProgress } from '../components/ScrollProgress';
@@ -18,52 +22,39 @@ import { WishesSection } from '../sections/WishesSection';
 import { FinalMessageSection } from '../sections/FinalMessageSection';
 
 export const HomePage: React.FC = () => {
-  const [birthday, setBirthday] = useState<BirthdayInfo | null>(null);
-  const [memories, setMemories] = useState<Memory[]>([]);
-  const [timeline, setTimeline] = useState<TimelineEvent[]>([]);
-  const [reasons, setReasons] = useState<Reason[]>([]);
-  const [wishes, setWishes] = useState<Wish[]>([]);
-  const [music, setMusic] = useState<MusicConfig | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [birthday, setBirthday] = useState<BirthdayInfo>(defaultBirthday);
+  const [memories, setMemories] = useState<Memory[]>(defaultMemories);
+  const [timeline, setTimeline] = useState<TimelineEvent[]>(defaultTimeline);
+  const [reasons, setReasons] = useState<Reason[]>(defaultReasons);
+  const [wishes, setWishes] = useState<Wish[]>(defaultWishes);
+  const [music, setMusic] = useState<MusicConfig | null>(defaultMusic);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
     try {
       const [bData, mData, tData, rData, wData, muData] = await Promise.all([
         api.getBirthday().catch(() => null),
-        api.getMemories().catch(() => []),
-        api.getTimeline().catch(() => []),
-        api.getReasons().catch(() => []),
-        api.getWishes().catch(() => []),
+        api.getMemories().catch(() => null),
+        api.getTimeline().catch(() => null),
+        api.getReasons().catch(() => null),
+        api.getWishes().catch(() => null),
         api.getMusic().catch(() => null)
       ]);
 
       if (bData) setBirthday(bData);
-      setMemories(mData || []);
-      setTimeline(tData || []);
-      setReasons(rData || []);
-      setWishes(wData || []);
-      setMusic(muData || null);
+      if (mData && mData.length > 0) setMemories(mData);
+      if (tData && tData.length > 0) setTimeline(tData);
+      if (rData && rData.length > 0) setReasons(rData);
+      if (wData && wData.length > 0) setWishes(wData);
+      if (muData) setMusic(muData);
     } catch (e) {
-      console.error('Failed to load page data', e);
-    } finally {
-      setLoading(false);
+      // Gracefully uses defaultData so it works 100% on GitHub Pages without backend
     }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-midnight-900 flex flex-col items-center justify-center text-white">
-        <div className="w-16 h-16 rounded-full border-4 border-rose-glow/30 border-t-rose-glow animate-spin mb-4" />
-        <span className="font-serif text-xl tracking-wide text-gold-warm">
-          Preparing Vaishnavi's Birthday Magic... ✨
-        </span>
-      </div>
-    );
-  }
 
   const sisterName = birthday?.sisterName || 'Vaishnavi';
 
